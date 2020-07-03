@@ -33,7 +33,7 @@ namespace Pacco.Services.Availability.Tests.Shared.Fixtures
                 .InitializeAsync().GetAwaiter().GetResult();
 
         public Task InsertAsync(TEntity entity)
-            => _database.GetCollection<TEntity>(_collectionName).InsertOneAsync(entity);
+            => _collection.InsertOneAsync(entity);
         
         public Task<TEntity> GetAsync(TKey id)
             => _collection.Find(d => d.Id.Equals(id)).SingleOrDefaultAsync();
