@@ -17,10 +17,12 @@ using Convey.MessageBrokers.RabbitMQ;
 using Convey.Persistence.MongoDB;
 using Convey.Persistence.Redis;
 using Convey.WebApi;
+using Convey.WebApi.CQRS;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
+using Pacco.Services.Availability.Application;
 using Pacco.Services.Availability.Application.Commands;
 using Pacco.Services.Availability.Application.Events.External;
 using Pacco.Services.Availability.Application.Services;
@@ -71,6 +73,7 @@ namespace Pacco.Services.Availability.Infrastructure
         {
             app.UseErrorHandler()
                 .UseConvey()
+                .UsePublicContracts<ContractAttribute>()
                 .UseRabbitMq()
                 .SubscribeCommand<AddResource>()
                 .SubscribeCommand<ReserveResource>()
