@@ -8,6 +8,7 @@ using Convey.CQRS.Events;
 using Convey.CQRS.Queries;
 using Convey.Discovery.Consul;
 using Convey.HTTP;
+using Convey.LoadBalancing.Fabio;
 using Convey.MessageBrokers;
 using Convey.MessageBrokers.CQRS;
 using Convey.MessageBrokers.Outbox;
@@ -60,6 +61,7 @@ namespace Pacco.Services.Availability.Infrastructure
                 .AddRabbitMq()
                 .AddHttpClient()
                 .AddConsul()
+                .AddFabio()
                 .AddMessageOutbox(o => o.AddMongo())
                 .AddHandlersLogging()
                 .AddMongoRepository<ResourceDocument, Guid>("resources");
